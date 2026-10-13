@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AccedeED Web - Plataforma Inteligente de Aprendizaje (ODS 4)</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><polygon points='50,12 90,28 50,44 10,28' fill='%230066ff'/><path d='M28,35 L50,46 L72,35 L72,48 L50,56 L28,48 Z' fill='%230066ff'/><path d='M15,58 L50,71 L85,58 L85,65 L50,78 L15,65 Z' fill='%23ffffff' stroke='%230066ff' stroke-width='3'/><path d='M15,72 L50,85 L85,72 L85,79 L50,92 L15,79 Z' fill='%23ffffff' stroke='%230066ff' stroke-width='3'/></svg>">
+  <link rel="stylesheet" href="css/styles.css">
+  <!-- Lucide Icons (CDN) -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="dark-theme">
+
+  <div class="app-container">
+
+    <!-- ==================== SIDEBAR ==================== -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <a class="brand-logo" onclick="navigateTo('inicio')">
+          <!-- Logo Icon AccedeED (Birrete + Libros) -->
+          <svg class="brand-icon-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Book 2 (Bottom) -->
+            <path d="M15,72 L50,85 L85,72 L85,79 L50,92 L15,79 Z" fill="#ffffff" stroke="#0066ff" stroke-width="4"/>
+            <!-- Book 1 (Top) -->
+            <path d="M15,58 L50,71 L85,58 L85,65 L50,78 L15,65 Z" fill="#ffffff" stroke="#0066ff" stroke-width="4"/>
+            <path d="M50,71 L50,92" stroke="#0066ff" stroke-width="4"/>
+            <!-- Birrete Diamond -->
+            <polygon points="50,12 90,28 50,44 10,28" fill="#0066ff"/>
+            <path d="M28,35 L50,46 L72,35 L72,48 L50,56 L28,48 Z" fill="#0066ff"/>
+            <path d="M10,28 L12,48" stroke="#0066ff" stroke-width="4" stroke-linecap="round"/>
+            <circle cx="12" cy="52" r="4" fill="#0066ff"/>
+          </svg>
+          <span class="brand-name">Accede<span>ED</span></span>
+        </a>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-section-title">Principal</div>
+        <a class="nav-item active" data-view="inicio" onclick="navigateTo('inicio')">
+          <i data-lucide="home"></i>
+          <span>Inicio</span>
+        </a>
+        <a class="nav-item" data-view="chat" onclick="navigateTo('chat')">
+          <i data-lucide="bot"></i>
+          <span>Chat IA Tutor</span>
+        </a>
+        <a class="nav-item" data-view="clases" onclick="navigateTo('clases')">
+          <i data-lucide="school"></i>
+          <span>Clases Classroom</span>
+        </a>
+        <a class="nav-item" data-view="evaluacion" onclick="navigateTo('evaluacion')">
+          <i data-lucide="help-circle"></i>
+          <span>Evaluación & Kahoot</span>
+        </a>
+        <a class="nav-item" data-view="flashcards" onclick="navigateTo('flashcards')">
+          <i data-lucide="layers"></i>
+          <span>Flashcards 3D</span>
+        </a>
+        <a class="nav-item" data-view="progreso" onclick="navigateTo('progreso')">
+          <i data-lucide="trending-up"></i>
+          <span>Camino de Niveles</span>
+        </a>
+
+        <div class="nav-section-title">Herramientas</div>
+        <a class="nav-item" data-view="formularios" onclick="navigateTo('formularios')">
+          <i data-lucide="binary"></i>
+          <span>Fórmulas & Pomodoro</span>
+        </a>
+        <a class="nav-item" data-view="recursos" onclick="navigateTo('recursos')">
+          <i data-lucide="book-open"></i>
+          <span>Recursos Educativos</span>
+        </a>
+        <a class="nav-item" data-view="calendario" onclick="navigateTo('calendario')">
+          <i data-lucide="calendar"></i>
+          <span>Calendario Escolar</span>
+        </a>
+        <a class="nav-item" data-view="busca" onclick="navigateTo('busca')">
+          <i data-lucide="search"></i>
+          <span>Buscador Global</span>
+        </a>
+
+        <div class="nav-section-title">Configuración</div>
+        <a class="nav-item" data-view="notificaciones" onclick="navigateTo('notificaciones')">
+          <i data-lucide="bell"></i>
+          <span>Notificaciones</span>
+          <span class="nav-badge" id="sidebar-notif-badge">4</span>
+        </a>
+        <a class="nav-item" data-view="perfil" onclick="navigateTo('perfil')">
+          <i data-lucide="user"></i>
+          <span>Mi Perfil</span>
+        </a>
+        <a class="nav-item" data-view="ajustes" onclick="navigateTo('ajustes')">
+          <i data-lucide="settings"></i>
+          <span>Ajustes</span>
+        </a>
+        <a class="nav-item" data-view="acercade" onclick="navigateTo('acercade')">
+          <i data-lucide="info"></i>
+          <span>Acerca de</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="ods-badge">
+          <i data-lucide="globe"></i>
+          <span>Educación de Calidad • ODS 4</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ==================== MAIN CONTENT ==================== -->
+    <main class="main-wrapper">
+      
+      <!-- Top Navigation Header -->
+      <header class="top-header">
+        <div class="header-search">
+          <i data-lucide="search"></i>
+          <input type="text" id="global-search-input" placeholder="Buscar fórmulas, clases, flashcards, temas..." oninput="handleGlobalHeaderSearch(this.value)">
+        </div>
+
+        <div class="header-actions">
+          <!-- Theme toggle -->
+          <button class="action-btn" id="btn-theme-toggle" title="Cambiar tema visual (Oscuro / Claro / Alto Contraste)" onclick="cycleTheme()">
+            <i data-lucide="moon" id="theme-icon"></i>
+          </button>
+
+          <!-- Notifications button -->
+          <button class="action-btn" title="Notificaciones en tiempo real" onclick="navigateTo('notificaciones')">
+            <i data-lucide="bell"></i>
+            <span class="action-badge" id="header-notif-badge">4</span>
+          </button>
+
+          <!-- User Profile Chip -->
+          <div class="user-profile-btn" onclick="navigateTo('perfil')">
+            <div class="user-avatar-img" id="header-avatar-initial">E</div>
+            <span class="user-name-label" id="header-user-name">Estudiante</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Viewport Views Container -->
+      <div class="views-viewport">
+
+        <!-- ==================== VIEW 1: INICIO ==================== -->
+        <section class="view-section active" id="view-inicio">
+          <div class="greeting-header">
+            <h1 class="greeting-title" id="dash-greeting">¡Hola, Estudiante! 👋</h1>
+            <p class="greeting-subtitle">Bienvenido a tu panel de control académico en AccedeED.</p>
+          </div>
+
+          <!-- AccedeBot Greeting Banner -->
+          <div class="bot-banner-card">
+            <div class="mascot-avatar" style="width: 48px; height: 48px;">
+              <svg class="mascot-svg" viewBox="0 0 100 100">
+                <rect x="20" y="20" width="60" height="60" rx="15" fill="none" stroke="#0066ff" stroke-width="5"/>
+                <ellipse class="mascot-eye" cx="38" cy="45" rx="6" ry="6" fill="#0066ff"/>
+                <ellipse class="mascot-eye" cx="62" cy="45" rx="6" ry="6" fill="#0066ff"/>
+                <path d="M40,65 Q50,75 60,65" fill="none" stroke="#0066ff" stroke-width="4" stroke-linecap="round"/>
+                <line x1="50" y1="20" x2="50" y2="8" stroke="#0066ff" stroke-width="5" stroke-linecap="round"/>
+                <circle cx="50" cy="8" r="4" fill="#0066ff"/>
+              </svg>
+            </div>
+            <div>
+              <div class="bot-banner-title">Mensaje de AccedeBot Tutor</div>
+              <p class="bot-banner-text" id="dash-bot-message">¡Revisa tus pendientes de hoy y completa tus objetivos para mantener encendida tu racha!</p>
+            </div>
+          </div>
+
+          <!-- Dashboard Grid -->
+          <div class="dashboard-grid">
+            <!-- Left Column: Metrics & Subjects Progress -->
+            <div>
+              <!-- Stats Row: Average & Streak -->
+              <div class="dash-stats-row">
+                <!-- Average Card -->
+                <div class="card-stat">
+                  <div class="card-stat-header">
+                    <span>Promedio general</span>
+                    <i data-lucide="bar-chart-2" style="color: var(--color-primary);"></i>
+                  </div>
+                  <div class="card-stat-value" id="dash-average-val">74%</div>
+                  <canvas id="trend-canvas" width="200" height="40" style="width: 100%; height: 40px;"></canvas>
+                </div>
+
+                <!-- Streak Flame Card -->
+                <div class="card-stat streak-card-active" id="dash-streak-card">
+                  <div class="card-stat-header">
+                    <span>Racha de estudio</span>
+                    <i data-lucide="flame" style="color: #ff3d00;"></i>
+                  </div>
+                  <div class="flame-container" style="margin: 0.5rem 0;">
+                    <div class="flame-icon-wrap">
+                      <i data-lucide="flame" style="width: 28px; height: 28px;"></i>
+                    </div>
+                    <div>
+                      <div class="streak-text-highlight" id="dash-streak-days">1 día</div>
+                      <div class="streak-subtext" id="dash-streak-status">¡Fuego activo hoy! 🔥</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Subjects Progress Box -->
+              <div class="content-box-card">
+                <div class="content-box-card-header">
+                  <div class="content-box-title">Progreso por Materia</div>
+                  <button class="btn-pill-action" onclick="openEditSubjectsModal()">
+                    <i data-lucide="edit-3"></i>
+                    <span>Editar materias</span>
+                  </button>
+                </div>
+                <div id="dash-subjects-list">
+                  <!-- Rendered dynamically -->
+                </div>
+              </div>
+
+              <!-- Recent Activity Box -->
+              <div class="content-box-card">
+                <div class="content-box-card-header">
+                  <div class="content-box-title">Actividad Reciente</div>
+                </div>
+                <div class="activity-timeline" id="dash-activities-list">
+                  <!-- Rendered dynamically -->
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Column: Interactive Goals -->
+            <div>
+              <div class="content-box-card">
+                <div class="content-box-card-header">
+                  <div>
+                    <div class="content-box-title">Objetivos de Estudio</div>
+                    <div style="font-size: 0.78rem; color: var(--text-muted);">Diarios y semanales</div>
+                  </div>
+                  <button class="btn-pill-action" onclick="openAddGoalModal()">
+                    <i data-lucide="plus-circle"></i>
+                    <span>Nuevo</span>
+                  </button>
+                </div>
+
+                <div class="progress-track" style="margin-bottom: 1rem; height: 10px;">
+                  <div class="progress-bar" id="goals-progress-bar" style="width: 40%; background-color: var(--color-primary);"></div>
+                </div>
+
+                <div style="font-size: 0.85rem; font-weight: 700; color: var(--color-primary); margin-bottom: 1rem;" id="goals-count-label">
+                  2 de 5 completados
+                </div>
+
+                <div class="goals-list" id="dash-goals-list">
+                  <!-- Rendered dynamically -->
+                </div>
+              </div>
+
+              <!-- Quick Links Box -->
+              <div class="content-box-card" style="background: linear-gradient(135deg, var(--bg-surface-variant) 0%, rgba(0, 102, 255, 0.08) 100%);">
+                <div class="content-box-title" style="margin-bottom: 1rem;">Acciones Rápidas</div>
+                <div style="display: flex; flex-direction: column; gap: 8px;">
+                  <button class="btn-primary" style="width: 100%;" onclick="navigateTo('evaluacion')">
+                    <i data-lucide="help-circle"></i>
+                    <span>Iniciar Examen Kahoot con IA</span>
+                  </button>
+                  <button class="btn-outline" style="width: 100%;" onclick="navigateTo('chat')">
+                    <i data-lucide="bot"></i>
+                    <span>Preguntar a AccedeBot Tutor</span>
+                  </button>
+                  <button class="btn-outline" style="width: 100%;" onclick="navigateTo('flashcards')">
+                    <i data-lucide="layers"></i>
+                    <span>Repasar Flashcards 3D</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================== VIEW 2: CHAT IA ==================== -->
+        <section class="view-section" id="view-chat">
+          <div class="chat-container">
+            <!-- Chat Sessions Sidebar -->
+            <div class="chat-sessions-sidebar">
+              <div class="chat-sessions-header">
+                <button class="btn-new-chat" onclick="createNewChatSession()">
+                  <i data-lucide="plus"></i>
+                  <span>Nuevo Chat</span>
+                </button>
+              </div>
+              <div class="sessions-list" id="chat-sessions-list">
+                <!-- Rendered dynamically -->
+              </div>
+            </div>
+
+            <!-- Chat Main Conversation Area -->
+            <div class="chat-main-area">
+              <div class="chat-top-bar">
+                <div class="chat-tutor-info">
+                  <div class="mascot-avatar" id="chat-mascot-indicator" style="width: 36px; height: 36px;">
+                    <svg class="mascot-svg" viewBox="0 0 100 100">
+                      <rect x="20" y="20" width="60" height="60" rx="15" fill="none" stroke="#0066ff" stroke-width="5"/>
+                      <ellipse class="mascot-eye" cx="38" cy="45" rx="6" ry="6" fill="#0066ff"/>
+                      <ellipse class="mascot-eye" cx="62" cy="45" rx="6" ry="6" fill="#0066ff"/>
+                      <path d="M40,65 Q50,75 60,65" fill="none" stroke="#0066ff" stroke-width="4" stroke-linecap="round"/>
+                      <line x1="50" y1="20" x2="50" y2="8" stroke="#0066ff" stroke-width="5" stroke-linecap="round"/>
+                      <circle cx="50" cy="8" r="4" fill="#0066ff"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <div style="font-weight: 800; font-size: 0.95rem;">AccedeBot Tutor IA</div>
+                    <div class="chat-tutor-status" id="chat-status-text">En línea • Motor OpenRouter</div>
+                  </div>
+                </div>
+
+                <div>
+                  <button class="action-btn" title="Configurar clave API" onclick="navigateTo('ajustes')">
+                    <i data-lucide="key"></i>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Message Stream -->
+              <div class="chat-messages-container" id="chat-messages-stream">
+                <!-- Messages rendered dynamically -->
+              </div>
+
+              <!-- Input bar -->
+              <div class="chat-input-bar">
+                <input type="text" class="chat-text-input" id="chat-user-input" placeholder="Pregúntale a tu tutor sobre matemáticas, física, historia, código..." onkeydown="if(event.key==='Enter') sendChatMessage()">
+                <button class="btn-send-message" onclick="sendChatMessage()">
+                  <i data-lucide="send"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================== VIEW 3: CLASES CLASSROOM ==================== -->
+        <section class="view-section" id="view-clases">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem;">
+            <div>
+              <h2 style="font-size: 1.8rem; font-weight: 800;">Google Classroom Hub</h2>
+              <p style="color: var(--text-secondary); font-size: 0.95rem;">Visualiza tus materias, entrega tareas y consulta avisos de tus profesores.</p>
+            </div>
+            <button class="btn-primary" onclick="syncClassroomSimulator()">
+              <i data-lucide="refresh-cw"></i>
+              <span>Sincronizar Cursos</span>
+            </button>
+          </div>
+
+          <div id="classroom-courses-container">
+            <div class="courses-grid" id="courses-grid-cards">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+
+          <!-- Course Detail View (hidden by default) -->
+          <div id="course-detail-view" style="display: none;">
+            <button class="btn-outline" style="margin-bottom: 1rem;" onclick="closeCourseDetail()">
+              <i data-lucide="arrow-left"></i>
+              <span>Volver a todas las materias</span>
+            </button>
+            <div class="course-detail-view" id="course-detail-card-inner">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================== VIEW 4: EVALUACIÓN (KAHOOT) ==================== -->
+        <section class="view-section" id="view-evaluacion">
+          <!-- Step 1: Config View -->
+          <div id="quiz-config-view" class="quiz-config-card">
+            <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 1.5rem;">
+              <div class="mascot-avatar" style="width: 48px; height: 48px;">
+                <svg class="mascot-svg" viewBox="0 0 100 100">
+                  <rect x="20" y="20" width="60" height="60" rx="15" fill="none" stroke="#0066ff" stroke-width="5"/>
+                  <ellipse class="mascot-eye" cx="38" cy="45" rx="6" ry="6" fill="#0066ff"/>
+                  <ellipse class="mascot-eye" cx="62" cy="45" rx="6" ry="6" fill="#0066ff"/>
+                  <path d="M40,65 Q50,75 60,65" fill="none" stroke="#0066ff" stroke-width="4" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <div>
+                <h2 style="font-size: 1.4rem; font-weight: 800;">Simulador de Examen Kahoot con IA</h2>
+                <p style="color: var(--text-secondary); font-size: 0.9rem;">AccedeBot generará preguntas interactivas adaptadas a tu nivel.</p>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">1. Selecciona la Materia</label>
+              <select class="form-select" id="quiz-subject-select">
+                <option value="Matemáticas">Matemáticas</option>
+                <option value="Física">Física</option>
+                <option value="Química">Química</option>
+                <option value="Programación">Programación</option>
+                <option value="Historia">Historia</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">2. Autoevaluación de Nivel</label>
+              <select class="form-select" id="quiz-difficulty-select">
+                <option value="Principiante">🔴 Principiante (Desde Cero / Guiado)</option>
+                <option value="Intermedio" selected>🟡 Intermedio (Bueno / Promedio)</option>
+                <option value="Experto">🟢 Experto (Avanzado / Reto)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">3. Temas específicos a estudiar</label>
+              <input type="text" class="form-input" id="quiz-topics-input" placeholder="Ej. Derivadas, leyes de Newton, bucles for, gases ideales...">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">4. Número de Preguntas</label>
+              <div style="display: flex; gap: 10px;">
+                <label style="flex: 1; padding: 10px; background: var(--bg-surface-variant); border: 1px solid var(--border-color); border-radius: var(--radius-md); text-align: center; cursor: pointer;">
+                  <input type="radio" name="quiz-count" value="3" checked> 3 Preguntas (+50 Pts)
+                </label>
+                <label style="flex: 1; padding: 10px; background: var(--bg-surface-variant); border: 1px solid var(--border-color); border-radius: var(--radius-md); text-align: center; cursor: pointer;">
+                  <input type="radio" name="quiz-count" value="5"> 5 Preguntas (+120 Pts)
+                </label>
+              </div>
+            </div>
+
+            <button class="btn-primary" style="width: 100%; margin-top: 1rem; padding: 1rem;" onclick="startQuizEngine()">
+              <i data-lucide="play"></i>
+              <span>Generar Examen con AccedeBot</span>
+            </button>
+          </div>
+
+          <!-- Step 2: Quiz In-Progress View (Kahoot Colorful Options) -->
+          <div id="quiz-playing-view" style="display: none; max-width: 900px; margin: 0 auto;">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem;">
+              <span id="quiz-progress-text" style="font-weight: 800; color: var(--color-primary);">Pregunta 1 de 3</span>
+              <span id="quiz-points-text" style="font-weight: 800; background: var(--color-primary-container); color: var(--color-primary); padding: 4px 12px; border-radius: var(--radius-full);">⭐ 0 Pts</span>
+            </div>
+
+            <div class="kahoot-question-box">
+              <h2 id="kahoot-question-prompt" style="font-size: 1.6rem; font-weight: 900; line-height: 1.3;">Pregunta aquí...</h2>
+              <div id="kahoot-hint-box" style="display: none; margin-top: 1rem; padding: 0.75rem; background: rgba(0,0,0,0.3); border-radius: var(--radius-md); font-size: 0.9rem;"></div>
+            </div>
+
+            <div class="kahoot-options-grid">
+              <button class="kahoot-option-btn kahoot-btn-red" onclick="selectQuizOption(0)">
+                <span class="kahoot-option-shape">▲</span>
+                <span id="quiz-opt-0">Opción A</span>
+              </button>
+              <button class="kahoot-option-btn kahoot-btn-blue" onclick="selectQuizOption(1)">
+                <span class="kahoot-option-shape">◆</span>
+                <span id="quiz-opt-1">Opción B</span>
+              </button>
+              <button class="kahoot-option-btn kahoot-btn-yellow" onclick="selectQuizOption(2)">
+                <span class="kahoot-option-shape">●</span>
+                <span id="quiz-opt-2">Opción C</span>
+              </button>
+              <button class="kahoot-option-btn kahoot-btn-green" onclick="selectQuizOption(3)">
+                <span class="kahoot-option-shape">■</span>
+                <span id="quiz-opt-3">Opción D</span>
+              </button>
+            </div>
+
+            <!-- Instant Feedback Box -->
+            <div id="quiz-instant-feedback" style="display: none; margin-top: 1.5rem; padding: 1.25rem; border-radius: var(--radius-lg); text-align: center;">
+              <h3 id="feedback-title" style="font-size: 1.2rem; font-weight: 900;"></h3>
+              <p id="feedback-detail" style="font-size: 0.95rem; margin-top: 4px;"></p>
+              <button class="btn-primary" style="margin-top: 1rem;" onclick="nextQuizQuestion()">Siguiente Pregunta ➔</button>
+            </div>
+          </div>
+
+          <!-- Step 3: Quiz Results View -->
+          <div id="quiz-results-view" class="quiz-config-card" style="display: none; text-align: center;">
+            <div style="font-size: 3rem; margin-bottom: 0.5rem;">🏆</div>
+            <h2 style="font-size: 1.8rem; font-weight: 900; color: var(--color-primary);">¡Evaluación Completada!</h2>
+            <div id="quiz-score-banner" style="font-size: 1.3rem; font-weight: 800; margin: 1rem 0;">Puntaje: 3/3 Aciertos (+120 Puntos)</div>
+            <p id="quiz-feedback-pedagogical" style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 2rem;">AccedeBot ha evaluado tus respuestas satisfactoriamente.</p>
+            <button class="btn-primary" onclick="resetQuizToConfig()">Hacer Otra Evaluación</button>
+          </div>
+        </section>
+
+        <!-- ==================== VIEW 5: FLASHCARDS ==================== -->
+        <section class="view-section" id="view-flashcards">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem;">
+            <div>
+              <h2 style="font-size: 1.8rem; font-weight: 800;">Flashcards 3D de Estudio</h2>
+              <p style="color: var(--text-secondary); font-size: 0.95rem;">Toca cualquier tarjeta para girarla y memorizar conceptos con repetición espaciada.</p>
+            </div>
+            <button class="btn-primary" onclick="openAddFlashcardModal()">
+              <i data-lucide="plus"></i>
+              <span>Nueva Flashcard</span>
+            </button>
+          </div>
+
+          <!-- Category filter -->
+          <div style="display: flex; gap: 8px; margin-bottom: 1.5rem; overflow-x: auto; padding-bottom: 4px;" id="flashcard-category-pills">
+            <!-- Rendered dynamically -->
+          </div>
+
+          <div class="flashcards-grid" id="flashcards-grid-list">
+            <!-- Rendered dynamically -->
+          </div>
+        </section>
+
+        <!-- ==================== VIEW 6: PROGRESO (CAMINO DE NIVELES) ==================== -->
+        <section class="view-section" id="view-progreso">
+          <div style="max-width: 800px; margin: 0 auto;">
+            <div style="text-align: center; margin-bottom: 2rem;">
+              <h2 style="font-size: 2rem; font-weight: 800;">Camino Académico por Materias</h2>
+              <p style="color: var(--text-secondary); font-size: 0.95rem;">Completa 1 nivel diario para mantener encendida tu racha de fuego 🔥</p>
+            </div>
+
+            <!-- Subject tabs for Level Map -->
+            <div style="display: flex; gap: 8px; justify-content: center; margin-bottom: 2rem;" id="progreso-subject-chips">
+              <!-- Rendered dynamically -->
+            </div>
+
+            <!-- Interactive Level Path (Duolingo style) -->
+            <div class="levels-path-container" id="levels-path-nodes">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================== VIEW 7: FORMULARIOS & POMODORO ==================== -->
+        <section class="view-section" id="view-formularios">
+          <div class="course-detail-tabs" style="border-radius: var(--radius-lg); margin-bottom: 1.5rem;">
+            <button class="course-tab-btn active" onclick="switchFormulariosSubtab(0)">Fórmulas & Formularios</button>
+            <button class="course-tab-btn" onclick="switchFormulariosSubtab(1)">Páginas Web de Estudio</button>
+            <button class="course-tab-btn" onclick="switchFormulariosSubtab(2)">Cronómetro Pomodoro</button>
+          </div>
+
+          <!-- Subtab 0: Formulas -->
+          <div id="subtab-formulas">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem;">
+              <input type="text" class="form-input" style="max-width: 400px;" id="formulas-search-input" placeholder="Buscar fórmula o concepto..." oninput="filterFormulasList(this.value)">
+              <button class="btn-primary" onclick="openAddFormulaModal()">
+                <i data-lucide="plus"></i>
+                <span>Agregar Fórmula</span>
+              </button>
+            </div>
+            <div class="courses-grid" id="formulas-grid-list">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+
+          <!-- Subtab 1: Web Directory -->
+          <div id="subtab-websites" style="display: none;">
+            <div class="courses-grid" id="websites-grid-list">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+
+          <!-- Subtab 2: Pomodoro -->
+          <div id="subtab-pomodoro" style="display: none;">
+            <div class="pomodoro-container">
+              <div class="pomodoro-circle-display">
+                <i data-lucide="clock" style="color: var(--color-primary); width: 32px; height: 32px; margin-bottom: 8px;"></i>
+                <div class="pomodoro-timer-digits" id="pomodoro-digits">25:00</div>
+                <div style="font-size: 0.85rem; font-weight: 700; color: var(--text-secondary);" id="pomodoro-status">Sesión de Concentración</div>
+              </div>
+
+              <div style="display: flex; gap: 14px;">
+                <button class="btn-primary" style="padding: 0.85rem 2rem;" id="btn-pomodoro-toggle" onclick="togglePomodoro()">
+                  <i data-lucide="play" id="pomodoro-play-icon"></i>
+                  <span id="pomodoro-btn-text">Iniciar Pomodoro</span>
+                </button>
+                <button class="btn-outline" style="padding: 0.85rem 1.5rem;" onclick="resetPomodoro()">
+                  <i data-lucide="rotate-ccw"></i>
+                  <span>Reiniciar</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================== VIEW 8: RECURSOS EDUCATIVOS ==================== -->
+        <section class="view-section" id="view-recursos">
+          <div style="margin-bottom: 1.5rem;">
+            <h2 style="font-size: 1.8rem; font-weight: 800;">Biblioteca de Recursos Educativos</h2>
+            <p style="color: var(--text-secondary); font-size: 0.95rem;">Materiales didácticos, guías PDF, infografías y simuladores interactivos.</p>
+          </div>
+
+          <div style="display: flex; gap: 8px; margin-bottom: 1.5rem; overflow-x: auto; padding-bottom: 4px;" id="recursos-filter-pills">
+            <!-- Rendered dynamically -->
+          </div>
+
+          <div class="courses-grid" id="recursos-grid-list">
+            <!-- Rendered dynamically -->
+          </div>
+        </section>
+
+        <!-- ==================== VIEW 9: CALENDARIO ESCOLAR ==================== -->
+        <section class="view-section" id="view-calendario">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem;">
+            <div>
+              <h2 style="font-size: 1.8rem; font-weight: 800;">Calendario Escolar</h2>
+              <p style="color: var(--text-secondary); font-size: 0.95rem;">Fechas clave de exámenes, entregas de proyectos y eventos escolares.</p>
+            </div>
+            <button class="btn-primary" onclick="openAddEventModal()">
+              <i data-lucide="plus"></i>
+              <span>Nuevo Evento</span>
+            </button>
+          </div>
+
+          <div class="dashboard-grid">
+            <!-- Calendar Grid Card -->
+            <div class="content-box-card">
+              <div class="content-box-card-header">
+                <div class="content-box-title" id="calendar-month-year">Octubre 2026</div>
+                <div style="display: flex; gap: 6px;">
+                  <button class="action-btn" onclick="changeMonth(-1)"><i data-lucide="chevron-left"></i></button>
+                  <button class="action-btn" onclick="changeMonth(1)"><i data-lucide="chevron-right"></i></button>
+                </div>
+              </div>
+              <div id="calendar-days-grid" style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; text-align: center;">
+                <!-- Rendered dynamically -->
+              </div>
+            </div>
+
+            <!-- Events on Selected Day -->
+            <div class="content-box-card">
+              <div class="content-box-title" style="margin-bottom: 1rem;" id="calendar-events-title">Eventos Programados</div>
+              <div id="calendar-events-list">
+                <!-- Rendered dynamically -->
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================== VIEW 10: BUSCA (GLOBAL) ==================== -->
+        <section class="view-section" id="view-busca">
+          <div style="margin-bottom: 1.5rem;">
+            <h2 style="font-size: 1.8rem; font-weight: 800;">Buscador Académico Unificado</h2>
+            <p style="color: var(--text-secondary); font-size: 0.95rem;">Encuentra al instante cualquier contenido dentro de la plataforma.</p>
+          </div>
+
+          <input type="text" class="form-input" style="font-size: 1.1rem; padding: 1rem 1.4rem; margin-bottom: 1.5rem;" id="busca-main-input" placeholder="Escribe lo que deseas buscar (ej. fórmula cuadrática, cálculo, examen, célula)..." oninput="executeSearch(this.value)">
+
+          <div style="display: flex; gap: 8px; margin-bottom: 1.5rem;" id="search-filter-pills">
+            <!-- Rendered dynamically -->
+          </div>
+
+          <div id="search-results-output">
+            <!-- Rendered dynamically -->
+          </div>
+        </section>
+
+        <!-- ==================== VIEW 11: NOTIFICACIONES ==================== -->
+        <section class="view-section" id="view-notificaciones">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem;">
+            <div>
+              <h2 style="font-size: 1.8rem; font-weight: 800;">Centro de Notificaciones</h2>
+              <p style="color: var(--text-secondary); font-size: 0.95rem;">Avisos sobre tu racha, tareas pendientes y recordatorios de estudio.</p>
+            </div>
+            <div style="display: flex; gap: 10px;">
+              <button class="btn-outline" onclick="triggerStreakProtection()">🔥 Activar Racha</button>
+              <button class="btn-primary" onclick="triggerPendingReminders()">📝 Recordar Pendientes</button>
+            </div>
+          </div>
+
+          <div id="notifications-list-container" style="display: flex; flex-direction: column; gap: 12px; max-width: 900px;">
+            <!-- Rendered dynamically -->
+          </div>
+        </section>
+
+        <!-- ==================== VIEW 12: PERFIL ==================== -->
+        <section class="view-section" id="view-perfil">
+          <div style="max-width: 760px; margin: 0 auto;">
+            <!-- Profile Card -->
+            <div class="content-box-card" style="text-align: center; padding: 2.5rem 1.5rem;">
+              <div class="user-avatar-img" id="profile-avatar-big" style="width: 90px; height: 90px; font-size: 2.2rem; margin: 0 auto 1.25rem auto;">E</div>
+              <h2 style="font-size: 1.6rem; font-weight: 900;" id="profile-name-text">Estudiante AccedeED</h2>
+              <p style="color: var(--text-secondary); font-size: 0.95rem;" id="profile-email-text">estudiante@accedeed.edu</p>
+
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 1.5rem;">
+                <div style="padding: 1rem; background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md);">
+                  <div style="font-size: 0.8rem; color: var(--text-muted); font-weight: 700;">NIVEL ACADÉMICO</div>
+                  <div style="font-size: 1.1rem; font-weight: 800; color: var(--color-primary); margin-top: 4px;" id="profile-level-badge">Secundaria</div>
+                </div>
+                <div style="padding: 1rem; background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md);">
+                  <div style="font-size: 0.8rem; color: var(--text-muted); font-weight: 700;">LÍMITE DIARIO DE PANTALLA</div>
+                  <div style="font-size: 1.1rem; font-weight: 800; color: #ff9800; margin-top: 4px;" id="profile-limit-badge">30 minutos</div>
+                </div>
+              </div>
+
+              <button class="btn-outline" style="margin-top: 1.5rem; width: 100%;" onclick="openOnboardingWizard()">
+                <i data-lucide="edit-3"></i>
+                <span>Editar Datos Académicos (Nivel, Materias, Límite)</span>
+              </button>
+            </div>
+
+            <!-- Linked Google Account Simulator -->
+            <div class="content-box-card">
+              <div class="content-box-title" style="margin-bottom: 0.75rem;">Cuenta de Google</div>
+              <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem;">Vincula tu cuenta escolar de Google Classroom para sincronizar automáticamente tus clases y tareas.</p>
+              <button class="btn-primary" onclick="simulateGoogleSignIn()">
+                <i data-lucide="log-in"></i>
+                <span id="google-btn-text">Conectado con Google Classroom</span>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================== VIEW 13: AJUSTES ==================== -->
+        <section class="view-section" id="view-ajustes">
+          <div style="max-width: 760px; margin: 0 auto;">
+            <div style="margin-bottom: 1.5rem;">
+              <h2 style="font-size: 1.8rem; font-weight: 800;">Ajustes de la Plataforma</h2>
+              <p style="color: var(--text-secondary); font-size: 0.95rem;">Personaliza la apariencia, inteligencia artificial y tiempos de estudio.</p>
+            </div>
+
+            <!-- Appearance Section -->
+            <div class="content-box-card">
+              <div class="content-box-title" style="margin-bottom: 1rem;">Apariencia y Accesibilidad</div>
+              <div style="display: flex; flex-direction: column; gap: 12px;">
+                <label style="display: flex; align-items: center; justify-content: space-between; padding: 10px; background: var(--bg-surface); border-radius: var(--radius-md); cursor: pointer;">
+                  <div>
+                    <div style="font-weight: 700;">Modo Oscuro (Paleta 1)</div>
+                    <div style="font-size: 0.8rem; color: var(--text-secondary);">Fondo negro elegante con acentos azules eléctricos</div>
+                  </div>
+                  <input type="radio" name="app-theme" value="dark" checked onchange="setTheme('dark')">
+                </label>
+
+                <label style="display: flex; align-items: center; justify-content: space-between; padding: 10px; background: var(--bg-surface); border-radius: var(--radius-md); cursor: pointer;">
+                  <div>
+                    <div style="font-weight: 700;">Modo Claro (Paleta 2)</div>
+                    <div style="font-size: 0.8rem; color: var(--text-secondary);">Fondo blanco y azul real con acentos cálidos</div>
+                  </div>
+                  <input type="radio" name="app-theme" value="light" onchange="setTheme('light')">
+                </label>
+
+                <label style="display: flex; align-items: center; justify-content: space-between; padding: 10px; background: var(--bg-surface); border-radius: var(--radius-md); cursor: pointer;">
+                  <div>
+                    <div style="font-weight: 700;">Modo Alto Contraste (ODS 4)</div>
+                    <div style="font-size: 0.8rem; color: var(--text-secondary);">Bordes reforzados para máxima legibilidad visual</div>
+                  </div>
+                  <input type="radio" name="app-theme" value="high-contrast" onchange="setTheme('high-contrast')">
+                </label>
+              </div>
+            </div>
+
+            <!-- OpenRouter API Key Setting -->
+            <div class="content-box-card">
+              <div class="content-box-title" style="margin-bottom: 0.75rem;">Inteligencia Artificial (AccedeBot)</div>
+              <p style="color: var(--text-secondary); font-size: 0.88rem; margin-bottom: 1rem;">Clave de API de OpenRouter para consultas avanzadas en tiempo real:</p>
+              <input type="password" class="form-input" id="settings-api-key-input" placeholder="Ingresa tu clave de API" onchange="saveCustomApiKey(this.value)">
+              <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 6px;">Se guarda de forma local en tu navegador. Cuenta con fallback automático offline.</div>
+            </div>
+
+            <!-- Daily Study Limit ODS 4 -->
+            <div class="content-box-card">
+              <div class="content-box-title" style="margin-bottom: 0.75rem;">Compromiso ODS 4: Límite de Uso Diario</div>
+              <p style="color: var(--text-secondary); font-size: 0.88rem; margin-bottom: 1rem;">Cuida tu salud visual y evita la fatiga digital configurando un límite diario de sesión:</p>
+              <select class="form-select" id="settings-daily-limit-select" onchange="saveDailyLimit(this.value)">
+                <option value="15">15 minutos (Enfoque rápido)</option>
+                <option value="25">25 minutos (Sesión Pomodoro estándar)</option>
+                <option value="30" selected>30 minutos (Recomendado)</option>
+                <option value="60">60 minutos (1 hora máximo)</option>
+              </select>
+            </div>
+
+            <!-- System Reset -->
+            <div class="content-box-card">
+              <div class="content-box-title" style="color: var(--color-error); margin-bottom: 0.75rem;">Restablecer Datos</div>
+              <p style="color: var(--text-secondary); font-size: 0.88rem; margin-bottom: 1rem;">Reinicia tu progreso, racha y flashcards a los valores por defecto.</p>
+              <button class="btn-outline" style="border-color: var(--color-error); color: var(--color-error);" onclick="resetAllAppData()">Restablecer todo</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================== VIEW 14: ACERCA DE ==================== -->
+        <section class="view-section" id="view-acercade">
+          <div style="max-width: 680px; margin: 0 auto; text-align: center; padding: 2rem 0;">
+            <svg style="width: 80px; height: 80px; margin: 0 auto 1.5rem auto;" viewBox="0 0 100 100" fill="none">
+              <polygon points="50,12 90,28 50,44 10,28" fill="#0066ff"/>
+              <path d="M28,35 L50,46 L72,35 L72,48 L50,56 L28,48 Z" fill="#0066ff"/>
+              <path d="M15,58 L50,71 L85,58 L85,65 L50,78 L15,65 Z" fill="#ffffff" stroke="#0066ff" stroke-width="4"/>
+              <path d="M15,72 L50,85 L85,72 L85,79 L50,92 L15,79 Z" fill="#ffffff" stroke="#0066ff" stroke-width="4"/>
+            </svg>
+
+            <h1 style="font-size: 2.2rem; font-weight: 900; color: var(--color-primary);">AccedeED</h1>
+            <div style="font-weight: 700; color: var(--text-secondary); margin-bottom: 1.5rem;">Versión 1.0.0 Web Edition para Computadoras</div>
+
+            <div class="content-box-card" style="text-align: left; background: linear-gradient(135deg, var(--bg-surface-variant) 0%, rgba(0, 102, 255, 0.1) 100%);">
+              <h3 style="font-size: 1.2rem; font-weight: 800; color: var(--color-primary); margin-bottom: 0.75rem;">Nuestro Propósito: ODS 4</h3>
+              <p style="color: var(--text-primary); line-height: 1.6; margin-bottom: 1rem;">
+                AccedeED está diseñada en alineación con el <strong>Objetivo de Desarrollo Sostenible 4 (Educación de Calidad)</strong> de la Organización de las Naciones Unidas.
+              </p>
+              <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6;">
+                Buscamos garantizar una educación inclusiva, equitativa y de calidad, promoviendo oportunidades de aprendizaje durante toda la vida a través de herramientas tecnológicas accesibles y libres de distracciones.
+              </p>
+            </div>
+
+            <p style="color: var(--text-muted); font-size: 0.88rem; margin-top: 2rem;">Desarrollado con ❤️ para transformar la educación.</p>
+          </div>
+        </section>
+
+      </div>
+    </main>
+
+    <!-- ==================== FLOATING ACCEDEBOT MASCOT ==================== -->
+    <div class="floating-bot-widget">
+      <div class="floating-bot-trigger" title="Ayuda rápida de AccedeBot Tutor" onclick="toggleQuickBotModal()">
+        <svg style="width: 42px; height: 42px;" viewBox="0 0 100 100">
+          <rect x="20" y="20" width="60" height="60" rx="15" fill="none" stroke="#0066ff" stroke-width="5"/>
+          <ellipse class="mascot-eye" cx="38" cy="45" rx="6" ry="6" fill="#0066ff"/>
+          <ellipse class="mascot-eye" cx="62" cy="45" rx="6" ry="6" fill="#0066ff"/>
+          <path d="M40,65 Q50,75 60,65" fill="none" stroke="#0066ff" stroke-width="4" stroke-linecap="round"/>
+          <line x1="50" y1="20" x2="50" y2="8" stroke="#0066ff" stroke-width="5" stroke-linecap="round"/>
+          <circle cx="50" cy="8" r="4" fill="#0066ff"/>
+        </svg>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ==================== MODALS & DIALOGS ==================== -->
+
+  <!-- Modal: Quick AccedeBot Help -->
+  <div class="modal-overlay" id="modal-quick-bot">
+    <div class="modal-content-card">
+      <div class="modal-header">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <i data-lucide="bot" style="color: var(--color-primary);"></i>
+          <div class="modal-title">Tutor Rápido AccedeBot</div>
+        </div>
+        <button class="btn-close-modal" onclick="closeQuickBotModal()"><i data-lucide="x"></i></button>
+      </div>
+      <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem;">¿Tienes alguna duda rápida de tu materia o tarea? Escríbela aquí:</p>
+      <div class="form-group">
+        <textarea class="form-textarea" id="quick-bot-prompt" rows="3" placeholder="Ej. Explícame la diferencia entre mitosis y meiosis en 2 renglones..."></textarea>
+      </div>
+      <button class="btn-primary" style="width: 100%;" onclick="sendQuickBotQuery()">Consultar a AccedeBot</button>
+      <div id="quick-bot-response" style="margin-top: 1rem; padding: 1rem; background: var(--bg-surface-variant); border-radius: var(--radius-md); display: none; font-size: 0.92rem; line-height: 1.5;"></div>
+    </div>
+  </div>
+
+  <!-- Modal: Add Flashcard -->
+  <div class="modal-overlay" id="modal-add-flashcard">
+    <div class="modal-content-card">
+      <div class="modal-header">
+        <div class="modal-title">Nueva Flashcard de Estudio</div>
+        <button class="btn-close-modal" onclick="closeModal('modal-add-flashcard')"><i data-lucide="x"></i></button>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Pregunta o Concepto Frontal</label>
+        <input type="text" class="form-input" id="fc-input-question" placeholder="Ej. ¿Qué es la inercia?">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Respuesta al Reverso</label>
+        <textarea class="form-textarea" id="fc-input-answer" rows="3" placeholder="Ej. Resistencia que opone la materia a modificar su estado de reposo o movimiento."></textarea>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Categoría o Materia</label>
+        <input type="text" class="form-input" id="fc-input-category" placeholder="Ej. Física, Matemáticas, Historia...">
+      </div>
+      <button class="btn-primary" style="width: 100%;" onclick="saveNewFlashcard()">Guardar Flashcard</button>
+    </div>
+  </div>
+
+  <!-- Modal: Add Formula -->
+  <div class="modal-overlay" id="modal-add-formula">
+    <div class="modal-content-card">
+      <div class="modal-header">
+        <div class="modal-title">Agregar Nueva Fórmula</div>
+        <button class="btn-close-modal" onclick="closeModal('modal-add-formula')"><i data-lucide="x"></i></button>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Nombre de la Fórmula</label>
+        <input type="text" class="form-input" id="form-input-title" placeholder="Ej. Ley de Gravitación Universal">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Materia</label>
+        <select class="form-select" id="form-input-subject">
+          <option value="Matemáticas">Matemáticas</option>
+          <option value="Física">Física</option>
+          <option value="Química">Química</option>
+          <option value="Programación">Programación</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Fórmula Matemática</label>
+        <input type="text" class="form-input" id="form-input-expression" placeholder="Ej. F = G · (m₁ · m₂) / r²">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Explicación Paso a Paso</label>
+        <textarea class="form-textarea" id="form-input-explanation" rows="3" placeholder="Explica el significado de cada variable y cuándo aplicarla..."></textarea>
+      </div>
+      <button class="btn-primary" style="width: 100%;" onclick="saveNewFormula()">Guardar en Formulario</button>
+    </div>
+  </div>
+
+  <!-- Modal: Add Calendar Event -->
+  <div class="modal-overlay" id="modal-add-event">
+    <div class="modal-content-card">
+      <div class="modal-header">
+        <div class="modal-title">Nuevo Evento Escolar</div>
+        <button class="btn-close-modal" onclick="closeModal('modal-add-event')"><i data-lucide="x"></i></button>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Título del Evento</label>
+        <input type="text" class="form-input" id="cal-input-title" placeholder="Ej. Examen de Química Orgánica">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Descripción</label>
+        <input type="text" class="form-input" id="cal-input-desc" placeholder="Ej. Estudiar hidrocarburos y enlaces">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Fecha (AAAA-MM-DD)</label>
+        <input type="date" class="form-input" id="cal-input-date">
+      </div>
+      <button class="btn-primary" style="width: 100%;" onclick="saveCalendarEvent()">Guardar Evento</button>
+    </div>
+  </div>
+
+  <!-- Modal: Add Daily Goal -->
+  <div class="modal-overlay" id="modal-add-goal">
+    <div class="modal-content-card">
+      <div class="modal-header">
+        <div class="modal-title">Nuevo Objetivo de Estudio</div>
+        <button class="btn-close-modal" onclick="closeModal('modal-add-goal')"><i data-lucide="x"></i></button>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Meta a cumplir</label>
+        <input type="text" class="form-input" id="goal-input-title" placeholder="Ej. Resolver 20 ejercicios de derivadas">
+      </div>
+      <button class="btn-primary" style="width: 100%;" onclick="saveNewGoal()">Agregar Objetivo</button>
+    </div>
+  </div>
+
+  <!-- Modal: Edit Subjects -->
+  <div class="modal-overlay" id="modal-edit-subjects">
+    <div class="modal-content-card">
+      <div class="modal-header">
+        <div class="modal-title">Editar Mis Materias</div>
+        <button class="btn-close-modal" onclick="closeModal('modal-edit-subjects')"><i data-lucide="x"></i></button>
+      </div>
+      <div class="form-group" style="display: flex; gap: 8px;">
+        <input type="text" class="form-input" id="new-subj-input" placeholder="Nombre de materia (ej. Robótica)">
+        <button class="btn-primary" onclick="addCustomSubjectItem()">Agregar</button>
+      </div>
+      <div id="editable-subjects-list" style="display: flex; flex-direction: column; gap: 8px; margin-top: 1rem;">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Material Viewer (PDF / Doc Reader) -->
+  <div class="modal-overlay" id="modal-material-viewer">
+    <div class="modal-content-card" style="max-width: 800px;">
+      <div class="modal-header">
+        <div class="modal-title" id="viewer-material-title">Visor de Documento</div>
+        <button class="btn-close-modal" onclick="closeModal('modal-material-viewer')"><i data-lucide="x"></i></button>
+      </div>
+      <div style="padding: 1.5rem; background: var(--bg-surface-variant); border-radius: var(--radius-md); margin-bottom: 1.5rem;">
+        <div style="font-weight: 800; font-size: 1.1rem; color: var(--color-primary);" id="viewer-material-type">DOCUMENTO PDF</div>
+        <p style="color: var(--text-secondary); margin-top: 8px;" id="viewer-material-desc">Descripción del recurso.</p>
+      </div>
+      <div style="display: flex; gap: 10px; justify-content: flex-end;">
+        <a class="btn-primary" id="viewer-open-external-btn" target="_blank" href="#">
+          <i data-lucide="external-link"></i>
+          <span>Abrir Documento Completo</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Onboarding Wizard (5 Steps) -->
+  <div class="modal-overlay" id="modal-onboarding">
+    <div class="modal-content-card" style="max-width: 640px;">
+      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem;">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <svg style="width: 32px; height: 32px;" viewBox="0 0 100 100">
+            <polygon points="50,12 90,28 50,44 10,28" fill="#0066ff"/>
+            <path d="M15,58 L50,71 L85,58 L85,65 L50,78 L15,65 Z" fill="#ffffff" stroke="#0066ff" stroke-width="4"/>
+          </svg>
+          <span style="font-weight: 800; font-size: 1.1rem;">Bienvenido a AccedeED</span>
+        </div>
+        <button class="btn-pill-action" onclick="closeModal('modal-onboarding')">Responder más tarde</button>
+      </div>
+
+      <div class="progress-track" style="margin-bottom: 1.5rem;">
+        <div class="progress-bar" id="onboarding-progress-bar" style="width: 20%; background-color: var(--color-primary);"></div>
+      </div>
+
+      <div id="onboarding-step-content">
+        <!-- Rendered dynamically -->
+      </div>
+
+      <div style="display: flex; justify-content: space-between; margin-top: 2rem;">
+        <button class="btn-outline" id="onboarding-prev-btn" style="display: none;" onclick="onboardingStepPrev()">Anterior</button>
+        <button class="btn-primary" id="onboarding-next-btn" style="margin-left: auto;" onclick="onboardingStepNext()">Siguiente</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: ODS 4 Daily Time Limit Warning -->
+  <div class="modal-overlay" id="modal-time-limit">
+    <div class="modal-content-card" style="max-width: 500px; text-align: center;">
+      <div style="font-size: 3rem; margin-bottom: 1rem;">⏱️</div>
+      <h2 style="font-size: 1.5rem; font-weight: 900; color: var(--color-error); margin-bottom: 0.75rem;">Límite Diario Alcanzado</h2>
+      <p style="color: var(--text-primary); line-height: 1.6; margin-bottom: 1rem;">
+        Has alcanzado tu límite configurado de estudio en pantalla para el día de hoy.
+      </p>
+      <div style="padding: 1rem; background: rgba(239, 68, 68, 0.1); border: 1px solid var(--color-error); border-radius: var(--radius-md); font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 1.5rem;">
+        En cumplimiento de nuestro compromiso con el <strong>ODS 4 (Educación de Calidad)</strong> y para proteger tu salud visual y balance de descanso, te sugerimos tomar una pausa y continuar mañana.
+      </div>
+      <button class="btn-primary" onclick="closeModal('modal-time-limit')">Entendido, tomaré un descanso</button>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
