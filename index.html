@@ -129,6 +129,11 @@
             <span class="action-badge" id="header-notif-badge">4</span>
           </button>
 
+          <a class="google-login-header" id="google-login-header" href="/google_login">
+            <i data-lucide="log-in"></i>
+            <span>Iniciar sesión</span>
+          </a>
+
           <!-- User Profile Chip -->
           <div class="user-profile-btn" onclick="navigateTo('perfil')">
             <div class="user-avatar-img" id="header-avatar-initial">E</div>
@@ -685,14 +690,23 @@
               </button>
             </div>
 
-            <!-- Linked Google Account Simulator -->
+            <!-- Google account sign-in -->
             <div class="content-box-card">
               <div class="content-box-title" style="margin-bottom: 0.75rem;">Cuenta de Google</div>
-              <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem;">Vincula tu cuenta escolar de Google Classroom para sincronizar automáticamente tus clases y tareas.</p>
-              <button class="btn-primary" onclick="simulateGoogleSignIn()">
+              <p id="google-auth-status" role="status" style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem;">
+                Inicia sesión para vincular de forma segura tu cuenta de Google con AccedeED.
+              </p>
+              <a class="btn-primary" id="google-login-button" href="/google_login">
                 <i data-lucide="log-in"></i>
-                <span id="google-btn-text">Conectado con Google Classroom</span>
+                <span>Iniciar sesión con Google</span>
+              </a>
+              <button class="btn-outline" id="google-logout-button" type="button" onclick="logoutGoogleAccount()" hidden>
+                <i data-lucide="log-out"></i>
+                <span>Cerrar sesión</span>
               </button>
+              <p style="color: var(--text-muted); font-size: 0.78rem; margin-top: 0.75rem;">
+                El inicio de sesión valida tu cuenta de Google. La sincronización de Google Classroom requiere permisos adicionales.
+              </p>
             </div>
           </div>
         </section>

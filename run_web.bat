@@ -1,14 +1,27 @@
 @echo off
-title AccedeED Web - Servidor Local
-echo ==================================================
-echo   Iniciando AccedeED Web Edition...
-echo ==================================================
+title AccedeED Web - Login Google
 cd /d "%~dp0"
-python server.py
-if %ERRORLEVEL% NEQ 0 (
-    echo.
-    echo Python no pudo iniciar el servidor automaticamente.
-    echo Abriendo index.html directamente en tu navegador...
-    start "" index.html
+
+if not exist ".venv\Scripts\python.exe" (
+    echo Creando entorno virtual de AccedeED...
+    python -m venv .venv
+    if errorlevel 1 goto error
 )
+
+echo Comprobando dependencias de AccedeED...
+".venv\Scripts\python.exe" -m pip install -r requirements.txt
+if errorlevel 1 goto error
+
+echo.
+echo Iniciando AccedeED con el login de Google...
+".venv\Scripts\python.exe" server.py
+if errorlevel 1 goto error
+goto end
+
+:error
+echo.
+echo No se pudo iniciar AccedeED.
+echo Verifica que Python 3 este instalado y que el puerto 5000 este libre.
 pause
+
+:end
